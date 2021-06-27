@@ -1,7 +1,9 @@
 const express = require('express');
+const boolParser = require('express-query-boolean');
 const logger = require('morgan');
 const cors = require('cors');
 const HttpCode = require('./helpers/constants');
+const usersRouter = require('./routes/api/users');
 
 const app = express();
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -9,10 +11,9 @@ const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
 app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
+app.use(boolParser());
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+app.use('/api/users', usersRouter);
 
 app.use((req, res) => {
   res
