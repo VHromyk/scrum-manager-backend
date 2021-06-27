@@ -4,6 +4,7 @@ const logger = require('morgan');
 const cors = require('cors');
 const HttpCode = require('./helpers/constants');
 const usersRouter = require('./routes/api/users');
+const projectsRouter = require('./routes/api/projects');
 
 const app = express();
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -14,6 +15,7 @@ app.use(express.json());
 app.use(boolParser());
 
 app.use('/api/users', usersRouter);
+app.use('/api/projects', projectsRouter);
 
 app.use((req, res) => {
   res
