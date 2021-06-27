@@ -5,5 +5,6 @@
 
 ### Эндпоинты:
 
-- /api/users/signup &mdash; регистрация пользователя
-- /api/users/login &mdash; аутентификация пользователя
+- /api/users/signup &mdash; User registration
+- /api/users/login &mdash; User authentication
+- /api/users/logout &mdash; Logout
