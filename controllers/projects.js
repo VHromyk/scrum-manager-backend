@@ -21,6 +21,7 @@ const createSprint = async (req, res, next) => {
     const newSprint = {
       id: nanoid(),
       ...req.body,
+      tasks: [],
     };
     const result = await addSprint(projectId, newSprint);
 
