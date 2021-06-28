@@ -5,7 +5,10 @@
 
 ### Эндпоинты:
 
-- /api/users/signup &mdash; User registration
-- /api/users/login &mdash; User authentication
-- /api/users/logout &mdash; Logout
-- /api/projects/ &mdash; Create project
+- /api/users/signup &mdash; User registration (method POST)
+- /api/users/login &mdash; User authentication (method POST)
+- /api/users/logout &mdash; Logout (method POST)
+- /api/projects/ &mdash; Create project (method POST)
+- /api/projects/sprint/:projectId &mdash; Create sprint (method POST)
+- /api/projects/task/:sprintId &mdash; Create task (method POST)
+- /api/projects/:projectId &mdash; Delete project (method DELETE)
