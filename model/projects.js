@@ -6,6 +6,12 @@ const addProject = async body => {
   return result;
 };
 
+const deleteProject = async (userId, projectId) => {
+  const result = await Project.findOneAndRemove(
+    { _id: projectId, owner: userId });
+  return result;
+};
+
 const addSprint = async (projectId, sprint) => {
   try {
     const result = await Project.findByIdAndUpdate(
@@ -22,4 +28,4 @@ const addSprint = async (projectId, sprint) => {
   }
 };
 
-module.exports = { addProject, addSprint };
+module.exports = { addProject, deleteProject, addSprint };
