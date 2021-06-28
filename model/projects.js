@@ -6,9 +6,8 @@ const addProject = async body => {
   return result;
 };
 
-const deleteProject = async (userId, projectId) => {
-  const result = await Project.findOneAndRemove(
-    { _id: projectId, owner: userId });
+const deleteProject = async (projectId, userId) => {
+  const result = await Project.findByIdAndRemove(projectId, { owner: userId });
   return result;
 };
 
