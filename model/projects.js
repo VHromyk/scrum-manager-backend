@@ -10,7 +10,7 @@ const addProject = async body => {
 
 const addSprint = async body => {
   const result = await Sprint.create(body);
-
+  
   return result;
 };
 
@@ -20,4 +20,11 @@ const addTask = async body => {
   return result;
 };
 
-module.exports = { addProject, addSprint, addTask };
+const deleteProject = async (projectId, userId) => {
+  const result = await Project.findByIdAndRemove(projectId, { owner: userId });
+  
+  return result;
+};
+
+
+module.exports = { addProject, addSprint, addTask, deleteProject };
