@@ -2,8 +2,13 @@ const express = require('express');
 const router = express.Router();
 const ctrl = require('../../../controllers/projects');
 const guard = require('../../../helpers/guard');
-const { validateCreateProject } = require('./validation_schema');
+const {
+  validateCreateProject,
+  validateCreateSprint,
+} = require('./validation_schema');
 
 router.post('/', guard, validateCreateProject, ctrl.createProject);
+
+router.post('/:projectId', guard, validateCreateSprint, ctrl.createSprint);
 
 module.exports = router;

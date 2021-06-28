@@ -6,4 +6,20 @@ const addProject = async body => {
   return result;
 };
 
-module.exports = { addProject };
+const addSprint = async (projectId, sprint) => {
+  try {
+    const result = await Project.findByIdAndUpdate(
+      projectId,
+      {
+        $push: { sprints: sprint },
+      },
+      { new: true },
+    );
+
+    return result;
+  } catch (error) {
+    return false;
+  }
+};
+
+module.exports = { addProject, addSprint };
