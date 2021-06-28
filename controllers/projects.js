@@ -1,6 +1,10 @@
 const HttpCode = require('../helpers/constants');
-const { addProject, addSprint, addTask } = require('../model/projects');
-
+const {
+  addProject,
+  addSprint,
+  addTask,
+  deleteProject,
+} = require('../model/projects');
 
 const createProject = async (req, res, next) => {
   try {
@@ -63,6 +67,5 @@ const createTask = async (req, res, next) => {
     next(error);
   }
 };
-
 
 module.exports = { createProject, createSprint, createTask, removeProject };
