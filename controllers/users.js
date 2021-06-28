@@ -1,8 +1,6 @@
-const jwt = require('jsonwebtoken');
-require('dotenv').config();
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 const Users = require('../model/users');
 const HttpCode = require('../helpers/constants');
+const createToken = require('../helpers/genToken');
 
 const signup = async (req, res, next) => {
   try {
@@ -17,12 +15,16 @@ const signup = async (req, res, next) => {
     }
 
     const newUser = await Users.create(req.body);
-    const { email } = newUser;
+    const { email, id } = newUser;
+    const token = createToken(id);
+
+    await Users.updateToken(id, token);
 
     return res.status(HttpCode.CREATED).json({
       status: 'success',
       code: HttpCode.CREATED,
       data: {
+        token,
         user: {
           email,
         },
@@ -46,8 +48,7 @@ const login = async (req, res, next) => {
       });
     }
 
-    const payload = { id: user.id };
-    const token = jwt.sign(payload, JWT_SECRET_KEY, { expiresIn: '2h' });
+    const token = createToken(user.id);
     const { email } = user;
 
     await Users.updateToken(user.id, token);

@@ -9,3 +9,5 @@
 - /api/users/login &mdash; User authentication
 - /api/users/logout &mdash; Logout
 - /api/projects/ &mdash; Create project
+- /api/projects/sprint/:projectId &mdash; Create sprint
+- /api/projects/task/:sprintId &mdash; Create task

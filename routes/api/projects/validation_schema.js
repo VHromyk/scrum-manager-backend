@@ -11,6 +11,11 @@ const schemaCreateSprint = Joi.object({
   duration: Joi.number().integer().required(),
 });
 
+const schemaCreateTask = Joi.object({
+  name: Joi.string().min(4).max(20).required(),
+  scheduledHours: Joi.number().integer().min(1).max(24).required(),
+});
+
 const validate = async (schema, body, next) => {
   try {
     await schema.validateAsync(body);
@@ -26,4 +31,8 @@ module.exports.validateCreateProject = (req, _res, next) => {
 
 module.exports.validateCreateSprint = (req, _res, next) => {
   return validate(schemaCreateSprint, req.body, next);
+};
+
+module.exports.validateCreateTask = (req, _res, next) => {
+  return validate(schemaCreateTask, req.body, next);
 };

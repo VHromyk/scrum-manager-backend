@@ -11,10 +11,6 @@ const projectSchema = new Schema(
     description: {
       type: String,
     },
-    sprints: {
-      type: Array,
-      default: [],
-    },
     owners: {
       type: [SchemaTypes.ObjectId],
       ref: 'user',
