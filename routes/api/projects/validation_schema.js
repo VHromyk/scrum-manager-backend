@@ -20,6 +20,10 @@ const schemaCreateTask = Joi.object({
   scheduledHours: Joi.number().integer().min(1).max(24).required(),
 });
 
+const schemaInviteUser = Joi.object({
+  email: Joi.string().min(4).max(20).required(),
+});
+
 const validate = async (schema, body, next) => {
   try {
     await schema.validateAsync(body);
@@ -43,4 +47,8 @@ module.exports.validateCreateSprint = (req, _res, next) => {
 
 module.exports.validateCreateTask = (req, _res, next) => {
   return validate(schemaCreateTask, req.body, next);
+};
+
+module.exports.validateInviteUser = (req, _res, next) => {
+  return validate(schemaInviteUser, req.body, next);
 };
