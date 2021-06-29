@@ -15,3 +15,4 @@
 - /api/projects/:projectId/name &mdash; Rename project (method PUTCH)
 - /api/projects/:projectId/invite &mdash; Invite a user to the project (method
   PUTCH)
+- /api/projects/ &mdash; Get all projects of user (method GET)

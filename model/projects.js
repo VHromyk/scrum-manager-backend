@@ -2,6 +2,12 @@ const Project = require('./schemas/project');
 const Sprint = require('./schemas/sprint');
 const Task = require('./schemas/task');
 
+const getProjectsOfUser = async userId => {
+  const result = await Project.find({ owners: userId });
+
+  return result;
+};
+
 const addProject = async body => {
   const result = await Project.create(body);
 
@@ -42,7 +48,7 @@ const updateProject = async (userId, projectId, body) => {
 };
 
 const addUserToProject = async (userId, projectId, newUserId) => {
-  const result = Project.findOneAndUpdate(
+  const result = await Project.findOneAndUpdate(
     {
       _id: projectId,
       owners: { _id: userId },
@@ -61,4 +67,5 @@ module.exports = {
   deleteProject,
   updateProject,
   addUserToProject,
+  getProjectsOfUser,
 };

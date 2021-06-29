@@ -10,6 +10,8 @@ const {
   validateInviteUser,
 } = require('./validation_schema');
 
+router.get('/', guard, ctrl.getProjects);
+
 router.post('/', guard, validateCreateProject, ctrl.createProject);
 
 router.post(
