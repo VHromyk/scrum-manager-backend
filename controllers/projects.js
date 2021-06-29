@@ -7,7 +7,31 @@ const {
   deleteProject,
   updateProject,
   addUserToProject,
+  getProjectsOfUser,
 } = require('../model/projects');
+
+const getProjects = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const projects = await getProjectsOfUser(userId);
+
+    if (!projects) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: 'error',
+        code: HttpCode.NOT_FOUND,
+        message: 'Projects not found',
+      });
+    }
+
+    return res.status(HttpCode.OK).json({
+      status: 'success',
+      code: HttpCode.OK,
+      data: { projects },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 const createProject = async (req, res, next) => {
   try {
@@ -140,4 +164,5 @@ module.exports = {
   removeProject,
   updateProjectName,
   inviteUser,
+  getProjects,
 };
