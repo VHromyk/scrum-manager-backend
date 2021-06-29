@@ -4,6 +4,7 @@ const ctrl = require('../../../controllers/projects');
 const guard = require('../../../helpers/guard');
 const {
   validateCreateProject,
+  validateUpdateProjectName,
   validateCreateSprint,
   validateCreateTask,
 } = require('./validation_schema');
@@ -17,6 +18,8 @@ router.post('/task/:sprintId', guard, validateCreateTask, ctrl.createTask);
 router.post('/:projectId', guard, validateCreateSprint, ctrl.createSprint);
 
 router.delete('/:projectId', guard, ctrl.removeProject);
+
+router.patch('/:projectId/name', guard, validateUpdateProjectName, ctrl.updateProjectName);
 
 
 module.exports = router;
