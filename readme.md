@@ -7,6 +7,7 @@
 
 - /api/users/signup &mdash; User registration (method POST)
 - /api/users/login &mdash; User authentication (method POST)
+- /api/users/ &mdash; Get information about the current user (method GET)
 - /api/users/logout &mdash; Logout (method POST)
 - /api/projects/ &mdash; Create project (method POST)
 - /api/projects/sprint/:projectId &mdash; Create sprint (method POST)
