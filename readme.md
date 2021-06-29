@@ -16,3 +16,4 @@
 - /api/projects/:projectId/invite &mdash; Invite a user to the project (method
   PUTCH)
 - /api/projects/ &mdash; Get all projects of user (method GET)
+- /api/projects/:projectId &mdash; Get all sprints of project (method GET)

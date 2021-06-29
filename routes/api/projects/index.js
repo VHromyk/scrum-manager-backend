@@ -12,6 +12,8 @@ const {
 
 router.get('/', guard, ctrl.getProjects);
 
+router.get('/:projectId', guard, ctrl.getSprints);
+
 router.post('/', guard, validateCreateProject, ctrl.createProject);
 
 router.post(
