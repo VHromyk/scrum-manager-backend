@@ -26,5 +26,15 @@ const deleteProject = async (projectId, userId) => {
   return result;
 };
 
+const updateProject = async (userId, projectId, body) => {
+  const result = await Project.findByIdAndUpdate(
+    { _id: projectId,
+     owner: userId },
+    { ...body },
+    { new: true },
+  )
+  return result
+}
 
-module.exports = { addProject, addSprint, addTask, deleteProject };
+
+module.exports = { addProject, addSprint, addTask, deleteProject, updateProject };
