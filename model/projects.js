@@ -20,6 +20,29 @@ const addSprint = async body => {
   return result;
 };
 
+const getSptintsOfProject = async (userId, projectId) => {
+  try {
+    // Checking if the user has access to the project
+    const validation = await Project.findOne({
+      _id: projectId,
+      owners: userId,
+    });
+
+    if (!validation) {
+      return false;
+    }
+
+    const result = await Sprint.find({ mainProject: projectId }).populate({
+      path: 'mainProject',
+      select: 'name description -_id',
+    });
+
+    return result;
+  } catch (error) {
+    return false;
+  }
+};
+
 const addTask = async body => {
   const result = await Task.create(body);
 
@@ -68,4 +91,5 @@ module.exports = {
   updateProject,
   addUserToProject,
   getProjectsOfUser,
+  getSptintsOfProject,
 };

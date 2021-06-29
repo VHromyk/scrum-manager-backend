@@ -15,7 +15,7 @@ const sprintSchema = new Schema(
       type: String,
       required: [true, 'Set duration for sprint'],
     },
-    owner: {
+    mainProject: {
       type: SchemaTypes.ObjectId,
       ref: 'project',
     },
