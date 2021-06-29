@@ -12,3 +12,6 @@
 - /api/projects/sprint/:projectId &mdash; Create sprint (method POST)
 - /api/projects/task/:sprintId &mdash; Create task (method POST)
 - /api/projects/:projectId &mdash; Delete project (method DELETE)
+- /api/projects/:projectId/name &mdash; Rename project (method PUTCH)
+- /api/projects/:projectId/invite &mdash; Invite a user to the project (method
+  PUTCH)
