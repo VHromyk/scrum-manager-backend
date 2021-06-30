@@ -7,7 +7,7 @@ const sprintSchema = new Schema(
       type: String,
       required: [true, 'Set name for sprint'],
     },
-    startDate: {
+    date: {
       type: String,
       required: [true, 'Set start date for sprint'],
     },

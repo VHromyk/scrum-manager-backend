@@ -1,27 +1,23 @@
 const Joi = require('joi');
 
 const schemaCreateProject = Joi.object({
-  name: Joi.string().min(4).max(20).required(),
+  name: Joi.string().min(4).max(50).required(),
   description: Joi.string().min(10).max(100),
 });
 
 const schemaUpdateProjectName = Joi.object({
-  name: Joi.string().min(4).max(20).required(),
+  name: Joi.string().min(4).max(50).required(),
 });
 
 const schemaCreateSprint = Joi.object({
-  name: Joi.string().min(4).max(20).required(),
-  startDate: Joi.string().min(3).max(30).required(),
+  name: Joi.string().min(4).max(50).required(),
+  date: Joi.string().min(3).max(30).required(),
   duration: Joi.number().integer().required(),
 });
 
 const schemaCreateTask = Joi.object({
-  name: Joi.string().min(4).max(20).required(),
+  name: Joi.string().min(4).max(50).required(),
   scheduledHours: Joi.number().integer().min(1).max(24).required(),
-});
-
-const schemaInviteUser = Joi.object({
-  email: Joi.string().min(4).max(20).required(),
 });
 
 const validate = async (schema, body, next) => {
@@ -47,8 +43,4 @@ module.exports.validateCreateSprint = (req, _res, next) => {
 
 module.exports.validateCreateTask = (req, _res, next) => {
   return validate(schemaCreateTask, req.body, next);
-};
-
-module.exports.validateInviteUser = (req, _res, next) => {
-  return validate(schemaInviteUser, req.body, next);
 };

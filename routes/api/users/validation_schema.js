@@ -8,6 +8,18 @@ const schemaCreateUser = Joi.object({
   password: Joi.string().min(3).max(15).required().label('Password'),
 });
 
+const schemaLoginUser = Joi.object({
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .lowercase()
+    .required(),
+  password: Joi.string().min(3).max(15).required().label('Password'),
+});
+
+const schemaInviteUser = Joi.object({
+  email: Joi.string().min(4).max(20).required(),
+});
+
 const validate = async (schema, body, next) => {
   try {
     await schema.validateAsync(body);
@@ -19,4 +31,12 @@ const validate = async (schema, body, next) => {
 
 module.exports.validateCreateUser = (req, _res, next) => {
   return validate(schemaCreateUser, req.body, next);
+};
+
+module.exports.validateLoginUser = (req, _res, next) => {
+  return validate(schemaLoginUser, req.body, next);
+};
+
+module.exports.validateInviteUser = (req, _res, next) => {
+  return validate(schemaInviteUser, req.body, next);
 };

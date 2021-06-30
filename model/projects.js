@@ -1,11 +1,13 @@
 const Project = require('./schemas/project');
-const Sprint = require('./schemas/sprint');
-const Task = require('./schemas/task');
 
 const getProjectsOfUser = async userId => {
-  const result = await Project.find({ owners: userId });
+  try {
+    const result = await Project.find({ owners: userId });
 
-  return result;
+    return result;
+  } catch (error) {
+    return false;
+  }
 };
 
 const addProject = async body => {
@@ -14,17 +16,11 @@ const addProject = async body => {
   return result;
 };
 
-const addSprint = async body => {
-  const result = await Sprint.create(body);
-
-  return result;
-};
-
-const getSptintsOfProject = async projectId => {
+const deleteProject = async (projectId, userId) => {
   try {
-    const result = await Sprint.find({ mainProject: projectId }).populate({
-      path: 'mainProject',
-      select: 'name description -_id',
+    const result = await Project.findOneAndRemove({
+      _id: projectId,
+      owners: { _id: userId },
     });
 
     return result;
@@ -33,63 +29,25 @@ const getSptintsOfProject = async projectId => {
   }
 };
 
-const addTask = async body => {
-  const result = await Task.create(body);
-
-  return result;
-};
-
-const getTasksOfSprint = async sprintId => {
-  const result = await Task.find({ mainSprint: sprintId }).populate({
-    path: 'mainSprint',
-    select: 'name startDate duration',
-  });
-
-  return result;
-};
-
-const deleteProject = async (projectId, userId) => {
-  const result = await Project.findOneAndRemove({
-    _id: projectId,
-    owners: { _id: userId },
-  });
-
-  return result;
-};
-
 const updateProject = async (userId, projectId, body) => {
-  const result = await Project.findOneAndUpdate(
-    {
-      _id: projectId,
-      owners: { _id: userId },
-    },
-    { ...body },
-    { new: true },
-  );
-  return result;
-};
-
-const addUserToProject = async (userId, projectId, newUserId) => {
-  const result = await Project.findOneAndUpdate(
-    {
-      _id: projectId,
-      owners: { _id: userId },
-    },
-    { $addToSet: { owners: newUserId } },
-    { new: true },
-  );
-
-  return result;
+  try {
+    const result = await Project.findOneAndUpdate(
+      {
+        _id: projectId,
+        owners: { _id: userId },
+      },
+      { ...body },
+      { new: true },
+    );
+    return result;
+  } catch (error) {
+    return false;
+  }
 };
 
 module.exports = {
   addProject,
-  addSprint,
-  addTask,
   deleteProject,
   updateProject,
-  addUserToProject,
   getProjectsOfUser,
-  getSptintsOfProject,
-  getTasksOfSprint,
 };
