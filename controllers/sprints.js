@@ -40,4 +40,30 @@ const getSprints = async (req, res, next) => {
   }
 };
 
-module.exports = { createSprint, getSprints };
+const updateSprintName = async (req, res, next) => {
+  try {
+    const { sprintId } = req.params;
+    const newName = req.body;
+    const updatedSprint = await Sprints.updateSprint(sprintId, newName);
+
+    if (!updatedSprint) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: 'error',
+        code: HttpCode.NOT_FOUND,
+        message: 'Sprint not found',
+      });
+    }
+
+    const { name } = updatedSprint;
+
+    return res.status(HttpCode.OK).json({
+      status: 'success',
+      code: HttpCode.OK,
+      data: { Sprint: { newName: name } },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createSprint, getSprints, updateSprintName };
