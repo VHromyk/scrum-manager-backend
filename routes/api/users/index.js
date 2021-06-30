@@ -8,7 +8,7 @@ router.post('/signup', validateCreateUser, ctrl.signup);
 
 router.post('/login', ctrl.login);
 
-router.get('/', guard, ctrl.current);
+router.get('/current', guard, ctrl.current);
 
 router.post('/logout', guard, ctrl.logout);
 

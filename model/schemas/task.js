@@ -11,7 +11,7 @@ const taskSchema = new Schema(
       type: String,
       required: [true, 'Set scheduled hours for task'],
     },
-    owner: {
+    mainSprint: {
       type: SchemaTypes.ObjectId,
       ref: 'sprint',
     },
