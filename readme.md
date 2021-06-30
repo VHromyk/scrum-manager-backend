@@ -9,22 +9,20 @@
 
 ==============
 
-- /api/users/signup &mdash; User registration (method POST)
-- /api/users/login &mdash; User authentication (method POST)
-- /api/users/logout &mdash; Logout (method POST)
-- /api/users/current &mdash; Get information about the current user (method GET)
-- /api/users/:projectId/invite &mdash; Invite a user to the project (method
-  PUTCH)
+- /api/users/signup &mdash; Регистрация пользователя (POST)
+- /api/users/login &mdash; Аутентификация пользователя (POST)
+- /api/users/logout &mdash; Логаут (POST)
+- /api/users/current &mdash; Получить информацию о текущем юзере (GET)
+- /api/users/:projectId/invite &mdash; Добавить юзера в проект (PUTCH)
 
 ---
 
-- /api/projects/ &mdash; Create project (method POST)
-- /api/projects/sprints/:projectId &mdash; Create sprint (method POST)
-- /api/projects/tasks/:sprintId &mdash; Create task (method POST)
-- /api/projects/:projectId &mdash; Delete project (method DELETE)
-- /api/projects/:projectId/name &mdash; Rename project (method PUTCH)
-- /api/projects/ &mdash; Get all projects of user (method GET)
-- /api/projects/sprints/:projectId &mdash; Get all sprints of project (method
-  GET)
-- /api/projects/tasks/:sprintId &mdash; Get all tasks of sprint (method GET)
-- /api/projects/sprints/:sprintId/name &mdash; Rename sprint (method PUTCH)
+- /api/projects/ &mdash; Создать проект (POST)
+- /api/projects/sprints/:projectId &mdash; Создать спринт (POST)
+- /api/projects/tasks/:sprintId &mdash; Создать задачу (POST)
+- /api/projects/:projectId &mdash; Удалить проект (DELETE)
+- /api/projects/:projectId/name &mdash; Переименовать проект (PUTCH)
+- /api/projects/ &mdash; Получить все проекты текущего юзера (GET)
+- /api/projects/sprints/:projectId &mdash; Получить все спринты текущего проекта (GET)
+- /api/projects/tasks/:sprintId &mdash; Получить все задачи текущего спринта (GET)
+- /api/projects/sprints/:sprintId/name &mdash; Переименовать спринт (PUTCH)
