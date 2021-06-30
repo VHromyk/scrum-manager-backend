@@ -1,31 +1,41 @@
 const express = require('express');
 const router = express.Router();
-const ctrl = require('../../../controllers/projects');
+const ctrlSprints = require('../../../controllers/sprints');
+const ctrlTasks = require('../../../controllers/tasks');
+const ctrlProjects = require('../../../controllers/projects');
 const guard = require('../../../helpers/guard');
+
 const {
   validateCreateProject,
   validateUpdateProjectName,
   validateCreateSprint,
   validateCreateTask,
-  validateInviteUser,
 } = require('./validation_schema');
 
-router.get('/', guard, ctrl.getProjects);
+router.get('/', guard, ctrlProjects.getProjects);
 
-router.get('/sprints/:projectId', guard, ctrl.getSprints);
+router.get('/sprints/:projectId', guard, ctrlSprints.getSprints);
 
-router.get('/tasks/:sprintId', guard, ctrl.getTasks);
+router.get('/tasks/:sprintId', guard, ctrlTasks.getTasks);
 
-router.post('/', guard, validateCreateProject, ctrl.createProject);
+router.post('/', guard, validateCreateProject, ctrlProjects.createProject);
 
-router.post('/sprint/:projectId', guard, validateCreateSprint, ctrl.createSprint);
+router.post(
+  '/sprint/:projectId',
+  guard,
+  validateCreateSprint,
+  ctrlSprints.createSprint,
+);
 
-router.post('/task/:sprintId', guard, validateCreateTask, ctrl.createTask);
+router.post('/task/:sprintId', guard, validateCreateTask, ctrlTasks.createTask);
 
-router.delete('/:projectId', guard, ctrl.removeProject);
+router.delete('/:projectId', guard, ctrlProjects.removeProject);
 
-router.patch('/:projectId/name', guard, validateUpdateProjectName, ctrl.updateProjectName);
-
-router.patch('/:projectId/invite', guard, validateInviteUser, ctrl.inviteUser);
+router.patch(
+  '/:projectId/name',
+  guard,
+  validateUpdateProjectName,
+  ctrlProjects.updateProjectName,
+);
 
 module.exports = router;
