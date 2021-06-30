@@ -12,29 +12,19 @@ const {
 
 router.get('/', guard, ctrl.getProjects);
 
-router.get('/:projectId', guard, ctrl.getSprints);
+router.get('/sprints/:projectId', guard, ctrl.getSprints);
+
+router.get('/tasks/:sprintId', guard, ctrl.getTasks);
 
 router.post('/', guard, validateCreateProject, ctrl.createProject);
 
-router.post(
-  '/sprint/:projectId',
-  guard,
-  validateCreateSprint,
-  ctrl.createSprint,
-);
+router.post('/sprint/:projectId', guard, validateCreateSprint, ctrl.createSprint);
 
 router.post('/task/:sprintId', guard, validateCreateTask, ctrl.createTask);
 
-router.post('/:projectId', guard, validateCreateSprint, ctrl.createSprint);
-
 router.delete('/:projectId', guard, ctrl.removeProject);
 
-router.patch(
-  '/:projectId/name',
-  guard,
-  validateUpdateProjectName,
-  ctrl.updateProjectName,
-);
+router.patch('/:projectId/name', guard, validateUpdateProjectName, ctrl.updateProjectName);
 
 router.patch('/:projectId/invite', guard, validateInviteUser, ctrl.inviteUser);
 
