@@ -19,11 +19,12 @@
 ---
 
 - /api/projects/ &mdash; Create project (method POST)
-- /api/projects/sprint/:projectId &mdash; Create sprint (method POST)
-- /api/projects/task/:sprintId &mdash; Create task (method POST)
+- /api/projects/sprints/:projectId &mdash; Create sprint (method POST)
+- /api/projects/tasks/:sprintId &mdash; Create task (method POST)
 - /api/projects/:projectId &mdash; Delete project (method DELETE)
 - /api/projects/:projectId/name &mdash; Rename project (method PUTCH)
 - /api/projects/ &mdash; Get all projects of user (method GET)
 - /api/projects/sprints/:projectId &mdash; Get all sprints of project (method
   GET)
 - /api/projects/tasks/:sprintId &mdash; Get all tasks of sprint (method GET)
+- /api/projects/sprints/:sprintId/name &mdash; Rename sprint (method PUTCH)

@@ -19,4 +19,17 @@ const getSptintsOfProject = async projectId => {
   }
 };
 
-module.exports = { addSprint, getSptintsOfProject };
+const updateSprint = async (sprintId, body) => {
+  try {
+    const result = await Sprint.findByIdAndUpdate(
+      sprintId,
+      { ...body },
+      { new: true },
+    );
+    return result;
+  } catch (error) {
+    return false;
+  }
+};
+
+module.exports = { addSprint, getSptintsOfProject, updateSprint };

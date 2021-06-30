@@ -21,13 +21,18 @@ router.get('/tasks/:sprintId', guard, ctrlTasks.getTasks);
 router.post('/', guard, validateCreateProject, ctrlProjects.createProject);
 
 router.post(
-  '/sprint/:projectId',
+  '/sprints/:projectId',
   guard,
   validateCreateSprint,
   ctrlSprints.createSprint,
 );
 
-router.post('/task/:sprintId', guard, validateCreateTask, ctrlTasks.createTask);
+router.post(
+  '/tasks/:sprintId',
+  guard,
+  validateCreateTask,
+  ctrlTasks.createTask,
+);
 
 router.delete('/:projectId', guard, ctrlProjects.removeProject);
 
@@ -36,6 +41,13 @@ router.patch(
   guard,
   validateUpdateProjectName,
   ctrlProjects.updateProjectName,
+);
+
+router.patch(
+  '/sprints/:sprintId/name',
+  guard,
+  validateUpdateProjectName,
+  ctrlSprints.updateSprintName,
 );
 
 module.exports = router;
