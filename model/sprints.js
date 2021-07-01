@@ -32,4 +32,14 @@ const updateSprint = async (sprintId, body) => {
   }
 };
 
-module.exports = { addSprint, getSptintsOfProject, updateSprint };
+const deleteSprint = async sprintId => {
+  try {
+    const result = await Sprint.findOneAndRemove({ _id: sprintId });
+
+    return result;
+  } catch (error) {
+    return false;
+  }
+};
+
+module.exports = { addSprint, getSptintsOfProject, updateSprint, deleteSprint };

@@ -44,6 +44,8 @@ router.post(
 
 router.delete('/:projectId', guard, ctrlProjects.removeProject);
 
+router.delete('/sprints/:sprintId', guard, ctrlSprints.removeSprint);
+
 router.patch(
   '/:projectId/name',
   guard,
