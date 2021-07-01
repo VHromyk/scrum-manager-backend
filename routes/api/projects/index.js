@@ -10,6 +10,7 @@ const {
   validateUpdateProjectName,
   validateCreateSprint,
   validateCreateTask,
+  validateSearchTask,
 } = require('./validation_schema');
 
 router.get('/', guard, ctrlProjects.getProjects);
@@ -32,6 +33,13 @@ router.post(
   guard,
   validateCreateTask,
   ctrlTasks.createTask,
+);
+
+router.post(
+  '/tasks/:sprintId/search',
+  guard,
+  validateSearchTask,
+  ctrlTasks.findTask,
 );
 
 router.delete('/:projectId', guard, ctrlProjects.removeProject);
