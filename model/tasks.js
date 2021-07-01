@@ -38,4 +38,23 @@ const deleteTask = async taskId => {
   }
 };
 
-module.exports = { addTask, getTasksOfSprint, getTaskByName, deleteTask };
+const updateSpentTime = async (taskId, body) => {
+  try {
+    const result = await Task.findByIdAndUpdate(
+      taskId,
+      { ...body },
+      { new: true },
+    );
+    return result;
+  } catch (error) {
+    return false;
+  }
+};
+
+module.exports = {
+  addTask,
+  getTasksOfSprint,
+  getTaskByName,
+  deleteTask,
+  updateSpentTime,
+};

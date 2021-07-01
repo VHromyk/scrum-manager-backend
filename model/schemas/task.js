@@ -8,8 +8,12 @@ const taskSchema = new Schema(
       required: [true, 'Set name for task'],
     },
     scheduledHours: {
-      type: String,
+      type: Number,
       required: [true, 'Set scheduled hours for task'],
+    },
+    spentTime: {
+      type: Number,
+      default: 0,
     },
     mainSprint: {
       type: SchemaTypes.ObjectId,

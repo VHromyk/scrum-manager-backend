@@ -1,27 +1,31 @@
 const Joi = require('joi');
 
 const schemaCreateProject = Joi.object({
-  name: Joi.string().min(4).max(50).required(),
+  name: Joi.string().min(4).max(40).required(),
   description: Joi.string().min(4).max(100),
 });
 
 const schemaUpdateProjectName = Joi.object({
-  name: Joi.string().min(4).max(50).required(),
+  name: Joi.string().min(4).max(40).required(),
 });
 
 const schemaCreateSprint = Joi.object({
-  name: Joi.string().min(4).max(50).required(),
+  name: Joi.string().min(4).max(40).required(),
   date: Joi.string().min(3).max(30).required(),
   duration: Joi.number().integer().required(),
 });
 
 const schemaCreateTask = Joi.object({
-  name: Joi.string().min(4).max(50).required(),
+  name: Joi.string().min(4).max(40).required(),
   scheduledHours: Joi.number().integer().min(1).max(24).required(),
 });
 
 const schemaSearchTask = Joi.object({
-  searchName: Joi.string().min(1).max(50).required(),
+  searchName: Joi.string().min(1).max(40).required(),
+});
+
+const schemaSpentTimeTask = Joi.object({
+  spentTime: Joi.number().integer().min(1).max(24).required(),
 });
 
 const validate = async (schema, body, next) => {
@@ -51,4 +55,8 @@ module.exports.validateCreateTask = (req, _res, next) => {
 
 module.exports.validateSearchTask = (req, _res, next) => {
   return validate(schemaSearchTask, req.body, next);
+};
+
+module.exports.validateSpentTimeTask = (req, _res, next) => {
+  return validate(schemaSpentTimeTask, req.body, next);
 };
