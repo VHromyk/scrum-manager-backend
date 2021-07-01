@@ -37,7 +37,7 @@ const getTasks = async (req, res, next) => {
   }
 };
 
-const findTask = async (req, res, next) => {
+const findTaskByName = async (req, res, next) => {
   try {
     const { sprintId } = req.params;
     const { searchName } = req.body;
@@ -61,4 +61,27 @@ const findTask = async (req, res, next) => {
   }
 };
 
-module.exports = { createTask, getTasks, findTask };
+const removeTask = async (req, res, next) => {
+  try {
+    const { taskId } = req.params;
+    const filteredTasks = await Tasks.deleteTask(taskId);
+
+    if (!filteredTasks) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: 'error',
+        code: HttpCode.NOT_FOUND,
+        message: 'Not Found',
+      });
+    }
+
+    return res.status(HttpCode.OK).json({
+      status: 'success',
+      code: HttpCode.OK,
+      data: { Task: filteredTasks },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createTask, getTasks, findTaskByName, removeTask };

@@ -39,12 +39,14 @@ router.post(
   '/tasks/:sprintId/search',
   guard,
   validateSearchTask,
-  ctrlTasks.findTask,
+  ctrlTasks.findTaskByName,
 );
 
 router.delete('/:projectId', guard, ctrlProjects.removeProject);
 
 router.delete('/sprints/:sprintId', guard, ctrlSprints.removeSprint);
+
+router.delete('/tasks/:taskId', guard, ctrlTasks.removeTask);
 
 router.patch(
   '/:projectId/name',
