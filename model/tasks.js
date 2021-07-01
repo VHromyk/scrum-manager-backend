@@ -28,4 +28,14 @@ const getTaskByName = async (sprintId, searchName) => {
   return result;
 };
 
-module.exports = { addTask, getTasksOfSprint, getTaskByName };
+const deleteTask = async taskId => {
+  try {
+    const result = await Task.findOneAndRemove({ _id: taskId });
+
+    return result;
+  } catch (error) {
+    return false;
+  }
+};
+
+module.exports = { addTask, getTasksOfSprint, getTaskByName, deleteTask };
