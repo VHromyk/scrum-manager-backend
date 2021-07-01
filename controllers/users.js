@@ -23,11 +23,9 @@ const signup = async (req, res, next) => {
     return res.status(HttpCode.CREATED).json({
       status: 'success',
       code: HttpCode.CREATED,
-      data: {
-        token,
-        user: {
-          email,
-        },
+      token,
+      user: {
+        email,
       },
     });
   } catch (error) {
@@ -56,11 +54,9 @@ const login = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: {
-        token,
-        user: {
-          email,
-        },
+      token,
+      user: {
+        email,
       },
     });
   } catch (error) {
@@ -75,7 +71,7 @@ const current = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { user: { email } },
+      user: { email },
     });
   } catch (error) {
     next(error);
@@ -112,7 +108,7 @@ const inviteUser = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { Project: updatedProject },
+      project: updatedProject,
     });
   } catch (error) {
     next(error);

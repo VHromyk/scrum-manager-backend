@@ -11,7 +11,7 @@ const createSprint = async (req, res, next) => {
 
     return res
       .status(HttpCode.CREATED)
-      .json({ status: 'success', code: HttpCode.CREATED, data: { sprint } });
+      .json({ status: 'success', code: HttpCode.CREATED, sprint });
   } catch (error) {
     next(error);
   }
@@ -33,7 +33,7 @@ const getSprints = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { sprints },
+      sprints,
     });
   } catch (error) {
     next(error);
@@ -59,7 +59,7 @@ const updateSprintName = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { Sprint: { newName: name } },
+      sprint: { name },
     });
   } catch (error) {
     next(error);
@@ -82,7 +82,7 @@ const removeSprint = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { Sprint: filteredSprints },
+      sprint: filteredSprints,
     });
   } catch (error) {
     next(error);

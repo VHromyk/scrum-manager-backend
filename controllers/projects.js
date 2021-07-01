@@ -17,7 +17,7 @@ const getProjects = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { projects },
+      projects,
     });
   } catch (error) {
     next(error);
@@ -31,7 +31,7 @@ const createProject = async (req, res, next) => {
 
     return res
       .status(HttpCode.CREATED)
-      .json({ status: 'success', code: HttpCode.CREATED, data: { project } });
+      .json({ status: 'success', code: HttpCode.CREATED, project });
   } catch (error) {
     next(error);
   }
@@ -54,7 +54,7 @@ const removeProject = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { Project: filteredProjects },
+      Project: filteredProjects,
     });
   } catch (error) {
     next(error);
@@ -84,7 +84,7 @@ const updateProjectName = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { Project: { newName: name } },
+      Project: { name },
     });
   } catch (error) {
     next(error);
