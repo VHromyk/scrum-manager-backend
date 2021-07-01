@@ -31,3 +31,5 @@
 - /api/projects/tasks/:sprintId/search &mdash; Найти задачу по названию (POST)
 - /api/projects/sprints/:sprintId &mdash; Удалить спринт (DELETE)
 - /api/projects/tasks/:taskId &mdash; Удалить задачу (DELETE)
+- /api/projects/tasks/:taskId &mdash; Изменение выполненых часов в задаче
+  (PATCH)

@@ -84,4 +84,34 @@ const removeTask = async (req, res, next) => {
   }
 };
 
-module.exports = { createTask, getTasks, findTaskByName, removeTask };
+const changeSpentTime = async (req, res, next) => {
+  try {
+    const { taskId } = req.params;
+    const time = req.body;
+    const updatedTask = await Tasks.updateSpentTime(taskId, time);
+
+    if (!updatedTask) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: 'error',
+        code: HttpCode.NOT_FOUND,
+        message: 'Not Found',
+      });
+    }
+
+    return res.status(HttpCode.OK).json({
+      status: 'success',
+      code: HttpCode.OK,
+      data: { Task: updatedTask },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = {
+  createTask,
+  getTasks,
+  findTaskByName,
+  removeTask,
+  changeSpentTime,
+};

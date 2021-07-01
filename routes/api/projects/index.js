@@ -11,6 +11,7 @@ const {
   validateCreateSprint,
   validateCreateTask,
   validateSearchTask,
+  validateSpentTimeTask,
 } = require('./validation_schema');
 
 router.get('/', guard, ctrlProjects.getProjects);
@@ -60,6 +61,13 @@ router.patch(
   guard,
   validateUpdateProjectName,
   ctrlSprints.updateSprintName,
+);
+
+router.patch(
+  '/tasks/:taskId',
+  guard,
+  validateSpentTimeTask,
+  ctrlTasks.changeSpentTime,
 );
 
 module.exports = router;
