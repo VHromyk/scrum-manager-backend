@@ -37,4 +37,28 @@ const getTasks = async (req, res, next) => {
   }
 };
 
-module.exports = { createTask, getTasks };
+const findTask = async (req, res, next) => {
+  try {
+    const { sprintId } = req.params;
+    const { searchName } = req.body;
+    const task = await Tasks.getTaskByName(sprintId, searchName);
+
+    if (!task) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: 'error',
+        code: HttpCode.NOT_FOUND,
+        message: 'Task not found',
+      });
+    }
+
+    return res.status(HttpCode.OK).json({
+      status: 'success',
+      code: HttpCode.OK,
+      data: { task },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createTask, getTasks, findTask };

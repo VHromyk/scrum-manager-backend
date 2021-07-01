@@ -19,4 +19,13 @@ const getTasksOfSprint = async sprintId => {
   }
 };
 
-module.exports = { addTask, getTasksOfSprint };
+const getTaskByName = async (sprintId, searchName) => {
+  const result = await Task.find({
+    mainSprint: sprintId,
+    name: { $regex: searchName, $options: 'i' },
+  });
+
+  return result;
+};
+
+module.exports = { addTask, getTasksOfSprint, getTaskByName };
