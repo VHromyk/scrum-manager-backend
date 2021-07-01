@@ -27,3 +27,4 @@
 - /api/projects/tasks/:sprintId &mdash; Получить все задачи текущего спринта (GET)
 - /api/projects/sprints/:sprintId/name &mdash; Переименовать спринт (PUTCH)
 - /api/projects/tasks/:sprintId/search &mdash; Найти задачу по названию (POST)
+- /api/projects/sprints/:sprintId &mdash; Удалить спринт (DELETE)

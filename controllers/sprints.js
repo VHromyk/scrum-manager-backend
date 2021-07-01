@@ -66,4 +66,27 @@ const updateSprintName = async (req, res, next) => {
   }
 };
 
-module.exports = { createSprint, getSprints, updateSprintName };
+const removeSprint = async (req, res, next) => {
+  try {
+    const { sprintId } = req.params;
+    const filteredSprints = await Sprints.deleteSprint(sprintId);
+
+    if (!filteredSprints) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: 'error',
+        code: HttpCode.NOT_FOUND,
+        message: 'Not Found',
+      });
+    }
+
+    return res.status(HttpCode.OK).json({
+      status: 'success',
+      code: HttpCode.OK,
+      data: { Sprint: filteredSprints },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { createSprint, getSprints, updateSprintName, removeSprint };
