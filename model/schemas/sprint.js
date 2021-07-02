@@ -20,7 +20,19 @@ const sprintSchema = new Schema(
       ref: 'project',
     },
   },
-  { versionKey: false, timestamps: false },
+  {
+    versionKey: false,
+    timestamps: false,
+    toObject: { virtuals: true },
+    toJSON: {
+      virtuals: true,
+      transform: function (doc, ret) {
+        delete ret._id;
+
+        return ret;
+      },
+    },
+  },
 );
 
 const Sprint = mongoose.model('sprint', sprintSchema);

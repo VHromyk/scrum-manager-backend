@@ -8,7 +8,7 @@ const createTask = async (req, res, next) => {
 
     return res
       .status(HttpCode.CREATED)
-      .json({ status: 'success', code: HttpCode.CREATED, data: { task } });
+      .json({ status: 'success', code: HttpCode.CREATED, task });
   } catch (error) {
     next(error);
   }
@@ -30,7 +30,7 @@ const getTasks = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { tasks },
+      tasks,
     });
   } catch (error) {
     next(error);
@@ -54,7 +54,7 @@ const findTaskByName = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { task },
+      task,
     });
   } catch (error) {
     next(error);
@@ -77,7 +77,7 @@ const removeTask = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { Task: filteredTasks },
+      task: filteredTasks,
     });
   } catch (error) {
     next(error);
@@ -101,7 +101,7 @@ const changeSpentTime = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      data: { Task: updatedTask },
+      task: updatedTask,
     });
   } catch (error) {
     next(error);

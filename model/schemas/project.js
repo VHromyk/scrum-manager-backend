@@ -15,7 +15,19 @@ const projectSchema = new Schema(
       ref: 'user',
     },
   },
-  { versionKey: false, timestamps: false },
+  {
+    versionKey: false,
+    timestamps: false,
+    toObject: { virtuals: true },
+    toJSON: {
+      virtuals: true,
+      transform: function (doc, ret) {
+        delete ret._id;
+
+        return ret;
+      },
+    },
+  },
 );
 
 const Project = mongoose.model('project', projectSchema);
