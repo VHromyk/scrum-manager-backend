@@ -1,4 +1,6 @@
 const express = require('express');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger');
 const boolParser = require('express-query-boolean');
 const logger = require('morgan');
 const cors = require('cors');
@@ -13,6 +15,8 @@ app.use(logger(formatsLogger));
 app.use(cors());
 app.use(express.json());
 app.use(boolParser());
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.use('/api/users', usersRouter);
 app.use('/api/projects', projectsRouter);
