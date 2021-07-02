@@ -133,10 +133,34 @@ const inviteUser = async (req, res, next) => {
   }
 };
 
+const getOwners = async (req, res, next) => {
+  try {
+    const { projectId } = req.params;
+    const owners = await Projects.getOwnersOfProject(projectId);
+
+    if (!owners) {
+      return res.status(HttpCode.NOT_FOUND).json({
+        status: 'error',
+        code: HttpCode.NOT_FOUND,
+        message: 'Owners not found',
+      });
+    }
+
+    return res.status(HttpCode.OK).json({
+      status: 'success',
+      code: HttpCode.OK,
+      owners,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   createProject,
   removeProject,
   updateProjectName,
   getProjects,
   inviteUser,
+  getOwners,
 };

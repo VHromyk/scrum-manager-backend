@@ -1,4 +1,5 @@
 const Project = require('./schemas/project');
+const Users = require('./schemas/user');
 
 const getProjectsOfUser = async userId => {
   try {
@@ -58,10 +59,20 @@ const addUserToProject = async (userId, projectId, newUserId) => {
   return result;
 };
 
+const getOwnersOfProject = async projectId => {
+  const projectOwners = await Project.findById(projectId);
+  const { owners } = projectOwners;
+  const usersData = await Users.find({ _id: { $in: owners } });
+  const result = usersData.map(({ email }) => email);
+
+  return result;
+};
+
 module.exports = {
   addProject,
   deleteProject,
   updateProject,
   getProjectsOfUser,
   addUserToProject,
+  getOwnersOfProject,
 };
