@@ -14,6 +14,7 @@
 - /api/users/logout &mdash; Логаут (POST)
 - /api/users/current &mdash; Получить информацию о текущем пользователе (GET)
 
+- /api/projects/:projectId/owners &mdash; Получить пользователей проекта (GET)
 - /api/projects/:projectId/invite &mdash; Добавить пользователя в проект (PATCH)
 - /api/projects &mdash; Создать проект (POST)
 - /api/projects/:projectId/sprints &mdash; Создать спринт (POST)
