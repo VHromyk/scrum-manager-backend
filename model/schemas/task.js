@@ -20,7 +20,19 @@ const taskSchema = new Schema(
       ref: 'sprint',
     },
   },
-  { versionKey: false, timestamps: false },
+  {
+    versionKey: false,
+    timestamps: false,
+    toObject: { virtuals: true },
+    toJSON: {
+      virtuals: true,
+      transform: function (doc, ret) {
+        delete ret._id;
+
+        return ret;
+      },
+    },
+  },
 );
 
 const Task = mongoose.model('task', taskSchema);
