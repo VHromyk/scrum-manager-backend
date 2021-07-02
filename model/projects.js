@@ -45,9 +45,23 @@ const updateProject = async (userId, projectId, body) => {
   }
 };
 
+const addUserToProject = async (userId, projectId, newUserId) => {
+  const result = await Project.findOneAndUpdate(
+    {
+      _id: projectId,
+      owners: { _id: userId },
+    },
+    { $addToSet: { owners: newUserId } },
+    { new: true },
+  );
+
+  return result;
+};
+
 module.exports = {
   addProject,
   deleteProject,
   updateProject,
   getProjectsOfUser,
+  addUserToProject,
 };

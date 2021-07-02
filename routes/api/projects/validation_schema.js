@@ -9,6 +9,10 @@ const schemaUpdateProjectName = Joi.object({
   name: Joi.string().min(4).max(40).required(),
 });
 
+const schemaInviteUser = Joi.object({
+  email: Joi.string().min(4).max(20).required(),
+});
+
 const schemaCreateSprint = Joi.object({
   name: Joi.string().min(4).max(40).required(),
   date: Joi.string().min(3).max(30).required(),
@@ -43,6 +47,10 @@ module.exports.validateCreateProject = (req, _res, next) => {
 
 module.exports.validateUpdateProjectName = (req, _res, next) => {
   return validate(schemaUpdateProjectName, req.body, next);
+};
+
+module.exports.validateInviteUser = (req, _res, next) => {
+  return validate(schemaInviteUser, req.body, next);
 };
 
 module.exports.validateCreateSprint = (req, _res, next) => {
