@@ -8,6 +8,7 @@ const guard = require('../../../helpers/guard');
 const {
   validateCreateProject,
   validateUpdateProjectName,
+  validateInviteUser,
   validateCreateSprint,
   validateCreateTask,
   validateSearchTask,
@@ -16,28 +17,28 @@ const {
 
 router.get('/', guard, ctrlProjects.getProjects);
 
-router.get('/sprints/:projectId', guard, ctrlSprints.getSprints);
+router.get('/:projectId/sprints', guard, ctrlSprints.getSprints);
 
-router.get('/tasks/:sprintId', guard, ctrlTasks.getTasks);
+router.get('/:projectId/sprints/:sprintId/tasks', guard, ctrlTasks.getTasks);
 
 router.post('/', guard, validateCreateProject, ctrlProjects.createProject);
 
 router.post(
-  '/sprints/:projectId',
+  '/:projectId/sprints',
   guard,
   validateCreateSprint,
   ctrlSprints.createSprint,
 );
 
 router.post(
-  '/tasks/:sprintId',
+  '/:projectId/sprints/:sprintId/tasks',
   guard,
   validateCreateTask,
   ctrlTasks.createTask,
 );
 
 router.post(
-  '/tasks/:sprintId/search',
+  '/:projectId/sprints/:sprintId/tasks/search',
   guard,
   validateSearchTask,
   ctrlTasks.findTaskByName,
@@ -45,9 +46,13 @@ router.post(
 
 router.delete('/:projectId', guard, ctrlProjects.removeProject);
 
-router.delete('/sprints/:sprintId', guard, ctrlSprints.removeSprint);
+router.delete('/:projectId/sprints/:sprintId', guard, ctrlSprints.removeSprint);
 
-router.delete('/tasks/:taskId', guard, ctrlTasks.removeTask);
+router.delete(
+  '/:projectId/sprints/:sprintId/tasks/:taskId',
+  guard,
+  ctrlTasks.removeTask,
+);
 
 router.patch(
   '/:projectId/name',
@@ -57,17 +62,24 @@ router.patch(
 );
 
 router.patch(
-  '/sprints/:sprintId/name',
+  '/:projectId/sprints/:sprintId/name',
   guard,
   validateUpdateProjectName,
   ctrlSprints.updateSprintName,
 );
 
 router.patch(
-  '/tasks/:taskId',
+  '/:projectId/sprints/:sprintId/tasks/:taskId/time',
   guard,
   validateSpentTimeTask,
   ctrlTasks.changeSpentTime,
+);
+
+router.patch(
+  '/:projectId/invite',
+  guard,
+  validateInviteUser,
+  ctrlProjects.inviteUser,
 );
 
 module.exports = router;
