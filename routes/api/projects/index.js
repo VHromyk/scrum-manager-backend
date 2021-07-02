@@ -21,6 +21,8 @@ router.get('/:projectId/sprints', guard, ctrlSprints.getSprints);
 
 router.get('/:projectId/sprints/:sprintId/tasks', guard, ctrlTasks.getTasks);
 
+router.get('/:projectId/owners', guard, ctrlProjects.getOwners);
+
 router.post('/', guard, validateCreateProject, ctrlProjects.createProject);
 
 router.post(
