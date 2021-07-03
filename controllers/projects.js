@@ -55,7 +55,7 @@ const removeProject = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      Project: filteredProjects,
+      project: filteredProjects,
     });
   } catch (error) {
     next(error);
@@ -86,7 +86,7 @@ const updateProjectName = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      Project: { name },
+      project: { name },
     });
   } catch (error) {
     next(error);
