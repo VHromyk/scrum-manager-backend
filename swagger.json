@@ -597,7 +597,10 @@
                 "name": {
                   "type": "string"
                 },
-                "date": {
+                "startDate": {
+                  "type": "string"
+                },
+                "endDate": {
                   "type": "string"
                 },
                 "duration": {
@@ -626,7 +629,10 @@
                     "name": {
                       "type": "string"
                     },
-                    "date": {
+                    "startDate": {
+                      "type": "string"
+                    },
+                    "endDate": {
                       "type": "string"
                     },
                     "duration": {
@@ -680,8 +686,11 @@
                       "name": {
                         "type": "string"
                       },
-                      "date": {
-                        "type": "string"
+                      "startDate": {
+                      "type": "string"
+                      },
+                      "endDate": {
+                      "type": "string"
                       },
                       "duration": {
                         "type": "integer"
@@ -863,7 +872,10 @@
                           "name": {
                             "type": "string"
                           },
-                          "date": {
+                          "startDate": {
+                            "type": "string"
+                          },
+                          "endDate": {
                             "type": "string"
                           },
                           "duration": {
@@ -1265,7 +1277,10 @@
                     "name": {
                       "type": "string"
                     },
-                    "date": {
+                    "startDate": {
+                      "type": "string"
+                    },
+                    "endDate": {
                       "type": "string"
                     },
                     "duration": {
