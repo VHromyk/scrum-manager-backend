@@ -15,7 +15,8 @@ const schemaInviteUser = Joi.object({
 
 const schemaCreateSprint = Joi.object({
   name: Joi.string().min(4).max(40).required(),
-  date: Joi.string().min(3).max(30).required(),
+  startDate: Joi.string().min(3).max(30).required(),
+  endDate: Joi.string().min(3).max(30).required(),
   duration: Joi.number().integer().required(),
 });
 
