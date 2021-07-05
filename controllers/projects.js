@@ -96,9 +96,9 @@ const updateProjectName = async (req, res, next) => {
 const inviteUser = async (req, res, next) => {
   try {
     const userId = req.user.id;
-    const { email } = req.body;
+
     const { projectId } = req.params;
-    const user = await Users.findByEmail(email);
+    const user = await Users.findByEmail(req.body.email);
 
     if (!user) {
       return res.status(HttpCode.NOT_FOUND).json({
@@ -108,7 +108,7 @@ const inviteUser = async (req, res, next) => {
       });
     }
 
-    const { _id } = user;
+    const { _id, email } = user;
     const updatedProject = await Projects.addUserToProject(
       userId,
       projectId,
@@ -126,7 +126,7 @@ const inviteUser = async (req, res, next) => {
     return res.status(HttpCode.OK).json({
       status: 'success',
       code: HttpCode.OK,
-      project: updatedProject,
+      user: { email },
     });
   } catch (error) {
     next(error);
