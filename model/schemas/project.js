@@ -11,7 +11,7 @@ const projectSchema = new Schema(
       type: String,
     },
     owners: {
-      type: [SchemaTypes.ObjectId],
+      type: [String],
       ref: 'user',
     },
   },
