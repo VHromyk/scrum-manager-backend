@@ -23,6 +23,8 @@ const schemaCreateSprint = Joi.object({
 const schemaCreateTask = Joi.object({
   name: Joi.string().min(4).max(40).required(),
   scheduledHours: Joi.number().integer().min(1).max(24).required(),
+  spentTime: Joi.number().integer().min(1).max(24),
+  taskDate: Joi.string().min(1).max(20).required(),
 });
 
 const schemaSearchTask = Joi.object({

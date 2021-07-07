@@ -15,6 +15,10 @@ const taskSchema = new Schema(
       type: Number,
       default: 0,
     },
+    taskDate: {
+      type: String,
+      required: [true, 'Set task date'],
+    },
     mainSprint: {
       type: SchemaTypes.ObjectId,
       ref: 'sprint',
