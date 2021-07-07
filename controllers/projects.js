@@ -4,8 +4,8 @@ const Users = require('../model/users');
 
 const getProjects = async (req, res, next) => {
   try {
-    const userId = req.user.id;
-    const projects = await Projects.getProjectsOfUser(userId);
+    const email = req.user.email;
+    const projects = await Projects.getProjectsOfUser(email);
 
     if (!projects) {
       return res.status(HttpCode.NOT_FOUND).json({
@@ -27,8 +27,11 @@ const getProjects = async (req, res, next) => {
 
 const createProject = async (req, res, next) => {
   try {
-    const userId = req.user.id;
-    const project = await Projects.addProject({ ...req.body, owners: userId });
+    const email = req.user.email;
+    const project = await Projects.addProject({
+      ...req.body,
+      owners: email,
+    });
 
     return res
       .status(HttpCode.CREATED)
@@ -40,9 +43,9 @@ const createProject = async (req, res, next) => {
 
 const removeProject = async (req, res, next) => {
   try {
-    const userId = req.user.id;
+    const email = req.user.email;
     const { projectId } = req.params;
-    const filteredProjects = await Projects.deleteProject(projectId, userId);
+    const filteredProjects = await Projects.deleteProject(projectId, email);
 
     if (!filteredProjects) {
       return res.status(HttpCode.NOT_FOUND).json({
@@ -64,11 +67,11 @@ const removeProject = async (req, res, next) => {
 
 const updateProjectName = async (req, res, next) => {
   try {
-    const userId = req.user.id;
+    const email = req.user.email;
     const { projectId } = req.params;
 
     const updatedProject = await Projects.updateProject(
-      userId,
+      email,
       projectId,
       req.body,
     );
@@ -95,7 +98,7 @@ const updateProjectName = async (req, res, next) => {
 
 const inviteUser = async (req, res, next) => {
   try {
-    const userId = req.user.id;
+    const userEmail = req.user.email;
 
     const { projectId } = req.params;
     const user = await Users.findByEmail(req.body.email);
@@ -108,11 +111,11 @@ const inviteUser = async (req, res, next) => {
       });
     }
 
-    const { _id, email } = user;
+    const { email } = user;
     const updatedProject = await Projects.addUserToProject(
-      userId,
+      userEmail,
       projectId,
-      _id,
+      email,
     );
 
     if (!updatedProject) {

@@ -1,9 +1,9 @@
 const Project = require('./schemas/project');
 const Users = require('./schemas/user');
 
-const getProjectsOfUser = async userId => {
+const getProjectsOfUser = async email => {
   try {
-    const result = await Project.find({ owners: userId });
+    const result = await Project.find({ owners: email });
 
     return result;
   } catch (error) {
@@ -17,11 +17,11 @@ const addProject = async body => {
   return result;
 };
 
-const deleteProject = async (projectId, userId) => {
+const deleteProject = async (projectId, email) => {
   try {
     const result = await Project.findOneAndRemove({
       _id: projectId,
-      owners: { _id: userId },
+      owners: email,
     });
 
     return result;
@@ -30,12 +30,12 @@ const deleteProject = async (projectId, userId) => {
   }
 };
 
-const updateProject = async (userId, projectId, body) => {
+const updateProject = async (email, projectId, body) => {
   try {
     const result = await Project.findOneAndUpdate(
       {
         _id: projectId,
-        owners: { _id: userId },
+        owners: email,
       },
       { ...body },
       { new: true },
@@ -46,13 +46,13 @@ const updateProject = async (userId, projectId, body) => {
   }
 };
 
-const addUserToProject = async (userId, projectId, newUserId) => {
+const addUserToProject = async (userEmail, projectId, newUserEmail) => {
   const result = await Project.findOneAndUpdate(
     {
       _id: projectId,
-      owners: { _id: userId },
+      owners: userEmail,
     },
-    { $addToSet: { owners: newUserId } },
+    { $addToSet: { owners: newUserEmail } },
     { new: true },
   );
 
@@ -62,10 +62,8 @@ const addUserToProject = async (userId, projectId, newUserId) => {
 const getOwnersOfProject = async projectId => {
   const projectOwners = await Project.findById(projectId);
   const { owners } = projectOwners;
-  const usersData = await Users.find({ _id: { $in: owners } });
-  const result = usersData.map(({ email }) => email);
 
-  return result;
+  return owners;
 };
 
 module.exports = {
