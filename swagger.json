@@ -372,23 +372,11 @@
                   "type": "integer",
                   "maximum": 200
                 },
-                "project": {
+                "user": {
                   "type": "object",
                   "properties": {
-                    "owners": {
-                      "type": "array",
-                      "items": {
-                        "type": "string"
-                      }
-                    },
-                    "name": {
-                      "type": "string"
-                    },
-                    "description": {
-                      "type": "string"
-                    },
-                    "id": {
-                      "type": "string"
+                    "email": {
+                      "type": "string"                     
                     }
                   }
                 }
@@ -776,6 +764,9 @@
                 },
                 "scheduledHours": {
                   "type": "integer"
+                },
+                "taskDate": {
+                  "type": "string"
                 }
               }
             }
@@ -805,6 +796,9 @@
                     },
                     "scheduledHours": {
                       "type": "integer"
+                    },
+                    "taskDate": {
+                      "type": "string"
                     },
                     "mainSprint": {
                       "type": "string"
@@ -866,6 +860,9 @@
                       "scheduledHours": {
                         "type": "integer"
                       },
+                      "taskDate": {
+                      "type": "string"
+                    },
                       "mainSprint": {
                         "type": "object",
                         "properties": {
@@ -1204,6 +1201,9 @@
                       "scheduledHours": {
                         "type": "integer"
                       },
+                      "taskDate": {
+                      "type": "string"
+                    },
                       "mainSprint": {
                         "type": "string"
                       },
@@ -1369,6 +1369,9 @@
                     },
                     "spentTime": {
                       "type": "integer"
+                    },
+                    "taskDate": {
+                      "type": "string"
                     },
                     "mainSprint": {
                       "type": "string"
